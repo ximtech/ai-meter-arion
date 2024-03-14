@@ -38,7 +38,7 @@ public class AiMeterArionApplication {
 
     @Scheduled(cron = "*/5 * * ? * *")  // Poll queue every 5 seconds
     public void handleIronMQMessage() {
-        MeterDataQueueMessage dataQueueMessage = getMeterDataMessage().orElse(null);
+        MeterDataQueueMessage dataQueueMessage = getMeterDataMessage();
         if (dataQueueMessage != null) {
             log.info("Received data message from queue with id: [{}]", dataQueueMessage.meterDataId());
             AIMeterData meterData = aiMeterDataRepository.findById(dataQueueMessage.meterDataId())
@@ -47,14 +47,14 @@ public class AiMeterArionApplication {
         }
     }
 
-    private Optional<MeterDataQueueMessage> getMeterDataMessage() {
+    private MeterDataQueueMessage getMeterDataMessage() {
         try {
             Message message = meterDataQueue.reserve();
             MeterDataQueueMessage dataQueueMessage = OBJECT_MAPPER.readValue(message.getBody(), MeterDataQueueMessage.class);
             meterDataQueue.deleteMessage(message);
-            return Optional.of(dataQueueMessage);
+            return dataQueueMessage;
         } catch (IOException e) {
-            return Optional.empty();
+            return null;
         }
     }
 }
