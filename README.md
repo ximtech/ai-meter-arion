@@ -11,7 +11,7 @@ Spring Boot application that runs integrations and meter reading processing
 ### Heroku CLI commands
 
 - `heroku login`
-- `heroku create --app ai-meter-proxima --region eu`
+- `heroku create --app ai-meter-arion --region eu`
 - `git push heroku main`
 - `heroku ps`
 - `heroku logs --tail`
