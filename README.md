@@ -4,7 +4,7 @@ Spring Boot application that runs integrations and meter reading processing
 
 ## TODO:
 
-- Bot description ⬜
+- Service description ⬜
 - Heroku deployment ✅
 - Integration tests ⬜
 

@@ -6,21 +6,17 @@ import aimeter.arion.dto.MeterDataQueueMessage;
 import aimeter.arion.exception.IntegrationException;
 import aimeter.arion.service.AIMeterIntegrationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.iron.ironmq.Client;
-import io.iron.ironmq.EmptyQueueException;
 import io.iron.ironmq.Message;
 import io.iron.ironmq.Queue;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.io.IOException;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Slf4j
