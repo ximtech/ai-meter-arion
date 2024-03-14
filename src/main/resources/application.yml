@@ -1,0 +1,72 @@
+info:
+  build:
+    version: ${version}
+  app:
+    name: AI Meter Arion
+    description: Worker Documentation
+    active-profile: ${spring.profiles.active}
+    dev-description: Worker application that handles integrations and meter readings processing
+    dev-link: https://github.com/ximtech/ai-meter-arion
+
+server:
+  port: ${PORT:8096}
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+  application:
+    name: "ai-meter-arion"
+  profiles:
+    active: ${PROFILE:dev}
+  main:
+    allow-bean-definition-overriding: false
+  messages:
+    basename: messages
+    fallback-to-system-locale: false
+    encoding: UTF-8
+  freemarker:
+    enabled: true
+    suffix: .ftl
+    cache: true
+  datasource:
+    hikari:
+      minimum-idle: 1
+      idle-timeout: 10000
+      maximumPoolSize: 10
+      schema: ${SCHEMA_NAME:meter}
+
+# actuator
+management:
+  endpoint.health.show-details: always
+  info:
+    env:
+      enabled: true
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: info, health
+    jmx:
+      exposure:
+        exclude: "*"
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+
+ironmq:
+  project:
+    id: ${IRON_MQ_PROJECT_ID}
+  token: ${IRON_MQ_TOKEN}
+  host: ${IRON_MQ_HOST}
+
+meter:
+  data:
+    queue:
+      name: ai_meter_data_queue
+
+telegram:
+  bot:
+    token: ${TELEGRAM_BOT_TOKEN}

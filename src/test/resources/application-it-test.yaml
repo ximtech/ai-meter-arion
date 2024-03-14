@@ -1,0 +1,19 @@
+spring:
+  sql:
+    init:
+      mode: always
+  main:
+    allow-bean-definition-overriding: true
+  groovy:
+    template:
+      check-template-location: false
+      
+ironmq:
+  project:
+    id: test_mq_project_id
+  token: test_mq_token_3489334645645656456234
+  host: test_mq_host
+
+telegram:
+  bot:
+    token: test_token_87368129723940809385459
